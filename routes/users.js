@@ -8,13 +8,24 @@ const schema = Joi.object().keys({
   password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/)
 });
 
+router.use((req, res, next) => {
+  if (req.query.msg === 'fail') {
+    res.locals.msg = 'Username Password not matched!';
+  } else {
+    res.locals.msg = '';
+  }
+  console.log('msg', res.locals.msg);
+  next();
+});
+
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   res.send('user page...  TBD ');
 });
 
 /* GET login page rendering */
 router.get('/login', (req, res) => {
+  // console.log(req.query);
   res.render('login');
 });
 
@@ -33,7 +44,7 @@ router.post('/login_process', (req, res, next) => {
         //   message: 'invalid username/password',
         //   data: userData
         // });
-        redirect('login?msg=fail');
+        res.redirect('login?msg=fail');
       } else {
         if (password === 'xxxx') {
           res.cookie('username', username);
