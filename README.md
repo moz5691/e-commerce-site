@@ -120,3 +120,53 @@ router.get('/logout', (req, res, next) => {
 is server routes. Its full path is 'localhost:3000/users/logout'. Since it is already in 'localhost:3000/users/' path, you just need to add '/logout' in server path.
 
 **res.redirect('login')** is for HTML (frontend) path. Its full path is /views/login. since we already set "views" as view engine path, we just need to set 'logout' as redirect path. It is the same case with res.send().
+
+{
+"itemName" : "Simpsons",
+"itemDepartment": "Movie",
+"itemPrice" : 25,
+"itemDescription" : "Funny comic",
+"itemSeller": "Fox",
+"itemCount" : 200,
+"itemImgPath" : "/images/simpsons.png"
+}
+
+{
+"itemName" : "Dog and Cat",
+"itemDepartment": "Toy",
+"itemPrice" : 15,
+"itemDescription" : "Dog and cot lovers must have",
+"itemSeller": "Dog,cat and US",
+"itemCount" : 2000,
+"itemImgPath" : "/images/dog_cat.png"
+}
+
+{
+"itemName" : "Braves",
+"itemDepartment": "Clothing",
+"itemPrice" : 9,
+"itemDescription" : "Braves team logo",
+"itemSeller": "Braves Inc.",
+"itemCount" : 2000,
+"itemImgPath" : "/images/braves.png"
+}
+
+{
+"itemName" : "Canon EOS",
+"itemDepartment": "Electronics",
+"itemPrice" : 999,
+"itemDescription" : "Canon EOS SLR camear, comes with kit lens, 50-175mm",
+"itemSeller": "Photos and everything",
+"itemCount" : 20,
+"itemImgPath" : "/images/canon-eos.jpeg"
+}
+
+{
+"itemName" : "Herbed Potato Seasoning",
+"itemDepartment": "Food",
+"itemPrice" : 8.99,
+"itemDescription" : "Herbed potato seasoning, just mix with diced potatos and oven bake for 40min at 400F, Great taste.",
+"itemSeller": "Herbs and Spices",
+"itemCount" : 20,
+"itemImgPath" : "/images/herbed-potato.jpeg"
+}
