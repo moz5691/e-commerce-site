@@ -121,6 +121,9 @@ is server routes. Its full path is 'localhost:3000/users/logout'. Since it is al
 
 **res.redirect('login')** is for HTML (frontend) path. Its full path is /views/login. since we already set "views" as view engine path, we just need to set 'logout' as redirect path. It is the same case with res.send().
 
+**Use Postman POST localhost:3000/inventory and add the following (one at a time) to your local database.**
+
+```javascript
 {
 "itemName" : "Simpsons",
 "itemDepartment": "Movie",
@@ -170,3 +173,4 @@ is server routes. Its full path is 'localhost:3000/users/logout'. Since it is al
 "itemCount" : 20,
 "itemImgPath" : "/images/herbed-potato.jpeg"
 }
+```
