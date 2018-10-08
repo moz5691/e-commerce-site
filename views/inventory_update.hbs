@@ -1,0 +1,44 @@
+<form action="/inventory/update/{{inventory.id}}?_method=PUT" method="post" class="form-group">
+  <img src="{{inventory.itemImgPath}}" alt="">
+  <div class="form-group row">
+    <label for="colFormLabel" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="colFormLabel" placeholder="{{inventory.itemName}}" name="itemName">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="colFormLabel" class="col-sm-2 col-form-label">Description
+    </label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="colFormLabel" placeholder="{{inventory.itemDescription}}" name="itemDescription">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="colFormLabel" class="col-sm-2 col-form-label">Seller</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="colFormLabel" placeholder="{{inventory.itemSeller}}" name="itemSeller">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="colFormLabel" class="col-sm-2 col-form-label">Price</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="colFormLabel" placeholder="{{inventory.itemPrice}}" name="itemPrice">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="colFormLabel" class="col-sm-2 col-form-label">InStock</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="colFormLabel" placeholder="{{inventory.itemCount}}" name="itemCount">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="colFormLabel" class="col-sm-2 col-form-label">Image Path</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="colFormLabel" placeholder="{{inventory.itemImgPath}}" name="itemImgPath">
+    </div>
+  </div>
+  <div class="form-check">
+    <button type="submit" class="btn btn-primary">Update</button>
+  </div>
+
+</form>

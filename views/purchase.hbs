@@ -1,0 +1,36 @@
+<div class="row mt-5">
+  <div class="col-sm-4 col-md-6 col-lg-5 col-xl-5 align-items-center " style="border:1px solid white">
+    <img class="align-self-center item-image" src={{inventory.itemImgPath}}>
+  </div>
+  <div class="col-sm-4 col-md-3 col-lg-5 col-xl-5" style="border:1px solid white">
+    <ul class="list-group">
+      <li class="list-unstyled">Name: {{inventory.itemName}}</li>
+      <li class="list-unstyled">Department: {{inventory.itemDepartment}}</li>
+      <li class="list-unstyled">Description: {{inventory.itemDescription}}</li>
+      <li class="list-unstyled">Seller: {{inventory.itemSeller}}</li>
+      <li class="list-unstyled">Price: ${{inventory.itemPrice}}</li>
+      <li class="list-unstyled">In stock: {{inventory.itemCount}}</li>
+      <li class="list-unstyled">SKU: {{inventory.id}}</li>
+    </ul>
+  </div>
+  <div class="col-sm-4 col-md-3 col-lg-2 col-xl-2" style="border:1px solid white">
+    <form action="/purchase/{{inventory.id}}?_method=PUT&qty=qtyItem" method="post" class="form-group">
+      <label for="formControlSelect1">How many?</label>
+      <select class="form-control" id="qtyControlSelect1" name="qtyItem">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
+      <br />
+      <button type="submit" class="btn-primary">Buy</button>
+    </form>
+  </div>
+  <hr />
+</div>
