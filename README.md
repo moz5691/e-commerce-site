@@ -121,6 +121,36 @@ is server routes. Its full path is 'localhost:3000/users/logout'. Since it is al
 
 **res.redirect('login')** is for HTML (frontend) path. Its full path is /views/login. since we already set "views" as view engine path, we just need to set 'logout' as redirect path. It is the same case with res.send().
 
+7. Method Override package is used. Method Override is very handy where only GET and POST methods are allowed with Form input by HTML1.1. We can override POST method to use PUT and DELETE method.  
+   **purchase.hbs**
+
+```html
+  <div >
+    <form action="/purchase/{{inventory.id}}?_method=PUT&qty=qtyItem" method="post" class="form-group">
+      <label for="formControlSelect1">How many?</label>
+      <select class="form-control" id="qtyControlSelect1" name="qtyItem">
+        <option value="1">1</option>
+        <option value="2">2</option>
+         ....
+      </select>
+      <button type="submit" class="btn-primary">Buy</button>
+    </form>
+  </div>
+</div>
+```
+
+**index.js**
+
+```javascript
+const methodOverride = require('method-override');
+router.use(methodOverride('_method'));
+
+router.put('/purchase/:id', (req, res) => {
+  Inventory.findOne({
+    _id: req.params.id
+  }).then(inventory => {
+```
+
 **Use Postman POST localhost:3000/inventory and add the following (one at a time) to your local database.**
 
 ```javascript
