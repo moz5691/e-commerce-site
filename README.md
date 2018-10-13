@@ -5,25 +5,14 @@ user login to be used for future use.
 1. How to run:
 
 - To run,
-  **npm start**
+  **node app.js**
 
-- To run with debug enabled,
-  {MAC OS}
-  DEBUG=userlogin:\* npm start
-  {WINDOWS}
-  set DEBUG=myapp:\* & npm start
+* Entry point is:
+  localhost:5000/
 
-- Entry point is:
-  localhost:3000/users/login
-
-2. Password change:
-
-- Password is set at  
-   users.js file,
-  ```javascript
-  if (password === 'xxxx') {
-  ```
-  'Joi' package is used for email and password validation.
+2. Password:
+   At login user register, create an user account. username is email format, password is minimum 4 characters.
+   DB seeds added. run standalone "node seed/inventory-seeder.js" to create local database seeds.
 
 =================================
 
