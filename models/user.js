@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const UserSchema = new Schema({
-  userName: {
+  name: {
+    type: String,
+    required: true
+  },
+  email: {
     type: String,
     required: true
   },
@@ -12,6 +16,17 @@ const UserSchema = new Schema({
   type: {
     type: String,
     required: false
+  },
+  // purchase: [
+  //   {
+  //     itemId: String,
+  //     itemQty: Number,
+  //     itemPrice: Number
+  //   }
+  // ],
+  date: {
+    type: Date,
+    default: Date.now
   }
 });
 

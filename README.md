@@ -121,8 +121,9 @@ is server routes. Its full path is 'localhost:3000/users/logout'. Since it is al
 
 **res.redirect('login')** is for HTML (frontend) path. Its full path is /views/login. since we already set "views" as view engine path, we just need to set 'logout' as redirect path. It is the same case with res.send().
 
-7. Method Override package is used. Method Override is very handy where only GET and POST methods are allowed with Form input by HTML1.1. We can override POST method to use PUT and DELETE method.  
-   **purchase.hbs**
+7. Method Override package is used. Method Override is very handy where only GET and POST methods are allowed with Form input by HTML1.1. We can override POST method to use PUT and DELETE method.
+
+**purchase.hbs**
 
 ```html
   <div >

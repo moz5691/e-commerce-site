@@ -1,42 +1,34 @@
 const express = require('express');
-const methodOverride = require('method-override');
 const router = express.Router();
 const Inventory = require('./../models/inventory');
+const { ensureAuthenticated } = require('../helpers/auth');
 
-router.use(methodOverride('_method'));
-
-// Chan: test middleware works????
 router.use((req, res, next) => {
   console.log('Time', Date.now());
   next();
 });
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('home', { title: 'This is Amazon clone site, welcome!!!' });
+router.get('/', ensureAuthenticated, (req, res) => {
+  res.render('home', { title: 'This week special!' });
 });
 
 // get inentory and display all
-router.get('/inventory', (req, res, next) => {
+router.get('/inventory', ensureAuthenticated, (req, res, next) => {
   Inventory.find({}).then(inventory => {
     res.render('index', { inventory: inventory });
   });
 });
 
 // get inentory and display all
-router.get('/inventory/seller', (req, res, next) => {
+router.get('/inventory/seller', ensureAuthenticated, (req, res, next) => {
   Inventory.find({}).then(inventory => {
     res.render('inventory_seller', { inventory: inventory });
   });
 });
 
-// get login page************************Maryam
-router.get('/login', function(req, res, next) {
-  res.render('login');
-});
-
 //Search item by its name
-router.post('/inventory/search', (req, res, next) => {
+router.post('/inventory/search', ensureAuthenticated, (req, res, next) => {
   const searchItem = req.body.searchItem;
   Inventory.find({ itemName: searchItem }, (err, inventory) => {
     if (err) {
@@ -49,7 +41,7 @@ router.post('/inventory/search', (req, res, next) => {
 });
 
 // update inventory count
-router.put('/inventory/:id', (req, res, next) => {
+router.put('/inventory/:id', ensureAuthenticated, (req, res, next) => {
   Inventory.findOne({
     _id: req.params.id
   }).then(inventory => {
@@ -60,7 +52,7 @@ router.put('/inventory/:id', (req, res, next) => {
   });
 });
 // post inventory
-router.post('/inventory', (req, res) => {
+router.post('/inventory', ensureAuthenticated, (req, res) => {
   const newInventory = {
     itemName: req.body.itemName,
     itemDepartment: req.body.itemDepartment,
@@ -75,7 +67,7 @@ router.post('/inventory', (req, res) => {
     .then(inventory => res.redirect('/inventory'));
 });
 
-router.get('/purchase/:id', (req, res) => {
+router.get('/purchase/:id', ensureAuthenticated, (req, res) => {
   Inventory.findOne({
     _id: req.params.id
   }).then(inventory => {
@@ -84,14 +76,13 @@ router.get('/purchase/:id', (req, res) => {
   });
 });
 
-router.put('/purchase/:id', (req, res) => {
+router.put('/purchase/:id', ensureAuthenticated, (req, res) => {
   Inventory.findOne({
     _id: req.params.id
   }).then(inventory => {
     qtyItem = req.body.qtyItem;
     res.locals.qtyItem = qtyItem;
     res.locals.totalCost = parseInt(qtyItem) * parseInt(inventory.itemPrice);
-    // console.log(req.body);
     inventory.itemCount = parseInt(inventory.itemCount) - parseInt(qtyItem);
     inventory.itemSoldCount =
       parseInt(inventory.itemSoldCount) + parseInt(qtyItem);
@@ -101,7 +92,7 @@ router.put('/purchase/:id', (req, res) => {
   });
 });
 
-router.get('/inventory/edit/:id', (req, res) => {
+router.get('/inventory/edit/:id', ensureAuthenticated, (req, res) => {
   Inventory.findOne({
     _id: req.params.id
   }).then(inventory => {
@@ -109,7 +100,7 @@ router.get('/inventory/edit/:id', (req, res) => {
   });
 });
 
-router.put('/inventory/update/:id', (req, res) => {
+router.put('/inventory/update/:id', ensureAuthenticated, (req, res) => {
   console.log('inventory update');
   console.log(req.body);
   Inventory.findOne({
@@ -139,15 +130,44 @@ router.put('/inventory/update/:id', (req, res) => {
   });
 });
 
-router.delete('/inventory/:id', (req, res) => {
+router.get('/review/:id', ensureAuthenticated, (req, res) => {
+  Inventory.findOne({
+    _id: req.params.id
+  }).then(inventory => {
+    console.log(inventory);
+    res.render('review/user_review', { inventory: inventory });
+  });
+});
+
+router.put('/review/update/:id', ensureAuthenticated, (req, res) => {
+  console.log('user review update');
+  console.log(req.body);
+  console.log(req.user);
+  const review = {
+    reviewer: req.user.email,
+    rate: req.body.userRate,
+    content: req.body.userReview,
+    date: Date.now()
+  };
+  Inventory.findOneAndUpdate(
+    { _id: req.params.id },
+    { $push: { itemReview: review } },
+    { new: true },
+    (err, doc) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(doc);
+        res.redirect('/inventory');
+      }
+    }
+  );
+});
+
+router.delete('/inventory/:id', ensureAuthenticated, (req, res) => {
   Inventory.remove({ _id: req.params.id }).then(() => {
     res.redirect('/inventory');
   });
 });
-
-// //The 404 Route (ALWAYS Keep this as the last route)
-// router.get('*', function(req, res) {
-//   res.send('what??? do not have such a route, 404');
-// });
 
 module.exports = router;

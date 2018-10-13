@@ -34,6 +34,14 @@ const InventorySchema = new Schema({
     type: String,
     required: false
   },
+  itemReview: [
+    {
+      reviewer: String,
+      rate: Number,
+      content: String,
+      date: Date
+    }
+  ],
   itemTag: [
     {
       type: String,
