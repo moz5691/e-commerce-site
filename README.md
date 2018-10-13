@@ -152,56 +152,17 @@ router.put('/purchase/:id', (req, res) => {
   }).then(inventory => {
 ```
 
-**Use Postman POST localhost:3000/inventory and add the following (one at a time) to your local database.**
+8. Update
 
-```javascript
-{
-"itemName" : "Simpsons",
-"itemDepartment": "Movie",
-"itemPrice" : 25,
-"itemDescription" : "Funny comic",
-"itemSeller": "Fox",
-"itemCount" : 200,
-"itemImgPath" : "/images/simpsons.png"
-}
+- Secure login added (Passport local strategy)
+- User registration added
+- Product review added
+- Secure route protection added (log in required to change routes)
+- DB seeds added. run "node seed/inventory-seeder.js" to create local database.
 
-{
-"itemName" : "Dog and Cat",
-"itemDepartment": "Toy",
-"itemPrice" : 15,
-"itemDescription" : "Dog and cot lovers must have",
-"itemSeller": "Dog,cat and US",
-"itemCount" : 2000,
-"itemImgPath" : "/images/dog_cat.png"
-}
+9. Todos
 
-{
-"itemName" : "Braves",
-"itemDepartment": "Clothing",
-"itemPrice" : 9,
-"itemDescription" : "Braves team logo",
-"itemSeller": "Braves Inc.",
-"itemCount" : 2000,
-"itemImgPath" : "/images/braves.png"
-}
-
-{
-"itemName" : "Canon EOS",
-"itemDepartment": "Electronics",
-"itemPrice" : 999,
-"itemDescription" : "Canon EOS SLR camear, comes with kit lens, 50-175mm",
-"itemSeller": "Photos and everything",
-"itemCount" : 20,
-"itemImgPath" : "/images/canon-eos.jpeg"
-}
-
-{
-"itemName" : "Herbed Potato Seasoning",
-"itemDepartment": "Food",
-"itemPrice" : 8.99,
-"itemDescription" : "Herbed potato seasoning, just mix with diced potatos and oven bake for 40min at 400F, Great taste.",
-"itemSeller": "Herbs and Spices",
-"itemCount" : 20,
-"itemImgPath" : "/images/herbed-potato.jpeg"
-}
-```
+- Purchase history
+- Pagination
+- Improve CSS styling
+- Department search
