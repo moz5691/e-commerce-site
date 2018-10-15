@@ -73,103 +73,10 @@ router.post('/register', (req, res) => {
     });
   }
 });
-/*
-router.put('/review/update/:id', (req, res) => {
-  console.log('user review update');
-  console.log(req.body);
-  console.log(req.user);
-  User.findOne({
-    name:req.user.email
-  }).then(user => {
 
-  })
-
-  res.send(req.body);
-});
-
-
-router.put('/purchase/:id', (req, res) => {
-  Inventory.findOne({
-    _id: req.params.id
-  }).then(inventory => {
-    qtyItem = req.body.qtyItem;
-    res.locals.qtyItem = qtyItem;
-    res.locals.totalCost = parseInt(qtyItem) * parseInt(inventory.itemPrice);
-    // console.log(req.body);
-    inventory.itemCount = parseInt(inventory.itemCount) - parseInt(qtyItem);
-    inventory.itemSoldCount =
-      parseInt(inventory.itemSoldCount) + parseInt(qtyItem);
-    inventory.save().then(inventory => {
-      res.render('purchase_complete', { inventory: inventory });
-    });
-  });
-});
-
-*/
 router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/users/login');
 });
-
-// const schema = Joi.object().keys({
-//   username: Joi.string()
-//     .email()
-//     .required(),
-//   password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/)
-// });
-
-// router.use((req, res, next) => {
-//   if (req.query.msg === 'fail') {
-//     res.locals.msg = 'Username Password not matched!';
-//   } else {
-//     res.locals.msg = '';
-//   }
-//   console.log('msg', res.locals.msg);
-//   next();
-// });
-
-// router.get('/', (req, res, next) => {
-//   res.send('user page...  TBD ');
-// });
-
-// router.get('/login', (req, res) => {
-//   // console.log(req.query);
-//   res.render('login');
-// });
-
-// router.post('/login_process', (req, res, next) => {
-//   const username = req.body.username;
-//   const password = req.body.password;
-
-//   Joi.validate(
-//     { username: username, password: password },
-//     schema,
-//     (err, value) => {
-//       if (err) {
-//         res.redirect('login?msg=fail');
-//       } else {
-//         if (password === 'xxxx') {
-//           res.cookie('username', username);
-//           res.redirect('welcome');
-//         } else {
-//           res.redirect('login?msg=fail');
-//         }
-//       }
-//     }
-//   );
-// });
-
-// /* Rendering welcome page, pass username via cookie */
-// router.get('/welcome', (req, res, next) => {
-//   res.render('welcome', {
-//     username: req.cookies.username
-//   });
-// });
-
-// /* Log out page, redirect to login page, clear cookie */
-// router.get('/logout', (req, res, next) => {
-//   res.clearCookie('username');
-//   res.redirect('login');
-// });
 
 module.exports = router;

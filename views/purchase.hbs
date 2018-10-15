@@ -14,7 +14,7 @@
     </ul>
   </div>
   <div class="col-sm-4 col-md-3 col-lg-2 col-xl-2" style="border:1px solid white">
-    <form action="/purchase/{{inventory.id}}?_method=PUT&qty=qtyItem" method="post" class="form-group">
+    <form action="/purchase/add-cart/{{inventory.id}}?qty=qtyItem" method="POST" class="form-group">
       <label for="formControlSelect1">How many?</label>
       <select class="form-control" id="qtyControlSelect1" name="qtyItem">
         <option value="1">1</option>

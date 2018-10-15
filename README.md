@@ -10,7 +10,7 @@ user login to be used for future use.
 * Entry point is:
   localhost:5000/
 
-2. Password:
+2. Password and DB seeds
    At login user register, create an user account. username is email format, password is minimum 4 characters.
    DB seeds added. run standalone "node seed/inventory-seeder.js" to create local database seeds.
 

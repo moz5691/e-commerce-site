@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Inventory = require('./../models/inventory');
+const Inventory = require('../models/inventory');
+
 const { ensureAuthenticated } = require('../helpers/auth');
 
 router.use((req, res, next) => {
@@ -65,31 +66,6 @@ router.post('/inventory', ensureAuthenticated, (req, res) => {
   new Inventory(newInventory)
     .save()
     .then(inventory => res.redirect('/inventory'));
-});
-
-router.get('/purchase/:id', ensureAuthenticated, (req, res) => {
-  Inventory.findOne({
-    _id: req.params.id
-  }).then(inventory => {
-    console.log(inventory);
-    res.render('purchase', { inventory: inventory });
-  });
-});
-
-router.put('/purchase/:id', ensureAuthenticated, (req, res) => {
-  Inventory.findOne({
-    _id: req.params.id
-  }).then(inventory => {
-    qtyItem = req.body.qtyItem;
-    res.locals.qtyItem = qtyItem;
-    res.locals.totalCost = parseInt(qtyItem) * parseInt(inventory.itemPrice);
-    inventory.itemCount = parseInt(inventory.itemCount) - parseInt(qtyItem);
-    inventory.itemSoldCount =
-      parseInt(inventory.itemSoldCount) + parseInt(qtyItem);
-    inventory.save().then(inventory => {
-      res.render('purchase_complete', { inventory: inventory });
-    });
-  });
 });
 
 router.get('/inventory/edit/:id', ensureAuthenticated, (req, res) => {

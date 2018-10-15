@@ -13,20 +13,9 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  type: {
-    type: String,
-    required: false
-  },
-  // purchase: [
-  //   {
-  //     itemId: String,
-  //     itemQty: Number,
-  //     itemPrice: Number
-  //   }
-  // ],
   date: {
     type: Date,
-    default: Date.now
+    default: Date
   }
 });
 
